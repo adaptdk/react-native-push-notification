@@ -410,7 +410,7 @@ public class RNPushNotificationHelper {
         if (repeatType != null) {
             long fireDate = (long) bundle.getDouble("fireDate");
 
-            boolean validRepeatType = Arrays.asList("time", "week", "day", "hour", "minute").contains(repeatType);
+            boolean validRepeatType = Arrays.asList("time", "year", "month", "week", "day", "hour", "minute").contains(repeatType);
 
             // Sanity checks
             if (!validRepeatType) {
@@ -429,6 +429,12 @@ public class RNPushNotificationHelper {
             switch (repeatType) {
                 case "time":
                     newFireDate = fireDate + repeatTime;
+                    break;
+                case "year":
+                    newFireDate = fireDate + 365 * ONE_DAY;
+                    break;
+                case "month":
+                    newFireDate = fireDate + 28 * ONE_DAY;
                     break;
                 case "week":
                     newFireDate = fireDate + 7 * ONE_DAY;
